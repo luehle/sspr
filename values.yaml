@@ -1,0 +1,44 @@
+# Copyright 2024 Open Text or one of its affiliates.
+#
+# The only warranties for products and services of Open Text and its
+# affiliates and licensors (“Open Text”) are as may be set forth in the express
+# warranty statements accompanying such products and services. Nothing herein
+# should be construed as constituting an additional warranty. Open Text
+# shall not be liable for technical or editorial errors or omissions contained
+# herein. The information contained herein is subject to change without notice.
+
+# Default values for SSPR.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 3
+
+namespace: some-namespace
+
+# Images Info
+images: 
+  repository: 123456789101.dkr.ecr.eu-north-1.amazonaws.com 
+  # Format  : <account-id>.dkr.ecr.<region>.amazonaws.com
+  pullPolicy: Always
+  sspr:
+    image: repo-name
+
+# AWS configuration
+aws:
+  deployment_region: eu-north-1
+  # Format: <region>
+  storage:
+    efsID: fs-0ab12c345de6789f1 
+    # Format: <efs-id>
+    size: 100Gi
+    # Format: <storage-size>
+  certificate_arn: "arn:aws:acm:eu-north-1:123456789101:certificate/123a4567-1234-1a23-a1b2-abc12de3456f"
+hostname: subdomainone.domainone.com
+
+# Volume configuration
+storage:
+  persistentVolumeClaim:
+    name: efs-claim
+  storageClass:
+    name: efs-sc
+
